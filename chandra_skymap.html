@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<meta charset="utf-8">
+<html lang="en">
+
+<head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+	
+     <title>Chandra X-ray Observatory's Skymap</title>
+
+     <style>
+
+     body {
+      background: #282828;
+      font-family: sans-serif;
+      font-size: 10px;
+      padding-left: 7px;
+   }
+     h1 {
+        color:#d1d1d1;
+	margin: 18px 14px 12px 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 25px;
+	line-height: 1;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+        text-shadow: 1px 1px 1px #000;
+    }
+    h2{
+        color: steelblue;
+	margin: 12px 0 18px 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 24px;
+	line-height: 1;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+        text-shadow: 1px 1px 1px #000;
+     }
+     h3{
+        color: #b5b5b5;
+	margin: 25px 0;
+	font-size: 18px;
+	line-height: 1;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+    }
+     h4 {
+	margin: 0px 0;
+	border-bottom: 1px solid #ccc;
+	line-height: 1;
+    }
+    span.obj {
+        color: steelblue;
+        text-shadow: 1px 1px 1px #000;
+    }
+    span.filter {
+        color: #b5b5b5;
+        text-shadow: 1px 1px 1px #000; 
+    }
+    .stroke {
+       fill: none;
+       stroke: #fff;
+       stroke-width: 3px;
+     }
+     .fill {
+       fill: #000;
+     }
+     .graticule {
+       fill: none;
+       stroke: #777;
+       stroke-width: 0.5px;
+       stroke-opacity: .75;
+     }
+   .axis path {
+       display: none;
+    }
+
+    .axis line {
+       fill: none;
+       stroke: #000;
+       shape-rendering: crispEdges;
+    }
+
+    .grid-background {
+       fill: #282828;
+     }
+
+    .grid line,
+    .grid path {
+        fill: none;
+        stroke: #fff;
+        shape-rendering: crispEdges;
+    }
+
+    .grid .minor.tick line {
+        stroke-opacity: .5;
+    }
+
+    .brush .extent {
+        stroke: #000;
+        fill: #fff;
+        fill-opacity: .125;
+        shape-rendering: crispEdges;
+    }
+
+     div.tooltip {   
+       background: #f0f0f0;
+       position: absolute;           
+       text-align: center;
+       overflow: hidden;
+       width: 220px;                  
+       margin: 0px auto;
+       padding: 8px;
+       font-family:"Helvetica Neue", Arial, sans-serif;
+       font-weight:100;
+       font: 12px sans-serif;        
+       border: solid 1px #000;      
+       border-radius: 4px;
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+       border-radius: 10px;
+       -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+       -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+       box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+       pointer-events: none;
+     }
+     ul
+     {
+         list-style-type: none;
+         margin: 0;
+         padding: 0;
+    }
+     li.star {
+         color:#5566aa;
+         text-shadow: 1px 1px 1px #000;
+     }
+     li.nebula {
+         color: #aa4499;
+         text-shadow: 1px 1px 1px #000;
+     }
+     li.galaxy {
+         color: #ee7788;
+         text-shadow: 1px 1px 1px #000;
+     }
+     li.planet {
+         color: #db9736;
+         text-shadow: 1px 1px 1px #000;
+     }
+     li.misc {
+         color: #ddcccc;
+         text-shadow: 1px 1px 1px #000;
+     }
+     div.control
+     {
+        float: left;
+        width: 280px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+        color: #b5b5b5;
+        text-shadow: 1px 1px 1px #000;
+	text-align: left;
+        position: absolute;
+     }
+     #dist {
+        left: 340px;
+        top: 550px;        
+     }
+     #distance {
+        margin-bottom: 10px;
+     }
+     #coord {
+        left: 17px;
+        top: 550px;
+     }
+     #cat {
+        width: 314px;
+        left: 660px;
+        top: 550px;
+     }
+     div.time {
+        float: left;
+        width: 956px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	text-align: left;
+        position: absolute;
+        top: 715px;
+        left: 17px;
+     }
+    #zp {
+       float: left;
+       width: 25px;
+       height: 25px;
+       position: absolute;
+       top: 65px;
+       left: 25px;
+    } 
+    #zp2 {
+       float: left;
+       width: 25px;
+       height: 25px;
+       position: absolute;
+       top: 65px;
+       left: 25px;
+    } 
+   #zm {
+       float: left;
+       width: 25px;
+       height: 25px;
+       position: absolute;
+       top: 65px;
+       left: 53px;
+    } 
+   #zm2 {
+       float: left;
+       width: 25px;
+       height: 25px;
+       position: absolute;
+       top: 65px;
+       left: 53px;
+    } 
+
+     </style>
+</head>
+     <body>
+         <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+     <h1>Chandra Skymap: Visualizing the X-ray Universe</h1>
+    <div id="zp">
+      <embed src="./plus.svg" type="image/svg+xml" id="plus"/>
+    </div>
+    <div id="zp2">
+      <svg width="25" height="25"><circle class="MW" fill="white" transform="translate(12.5,12.5), scale(1)" r="12" opacity="0"  id="zplus"></svg>
+    </div>
+    <div id="zm">
+      <embed src="./minus.svg" type="image/svg+xml" id="minus"/>
+    </div>
+    <div id="zm2">
+      <svg width="25" height="25"><circle class="MW" fill="white" transform="translate(12.5,12.5), scale(1)" r="12" opacity="0"  id="zmin"></svg>
+    </div>
+     <svg id="circles" width="960" height="500"></svg>
+
+		<form id="controls">
+			<div class=control id=dist>
+				<h2>Distance & Circle Size</h2>
+				<ul id="distance">
+					<li><label><input type="checkbox" checked="checked" value="EU"> Early Universe</label><svg width="30" height="10"><circle class="EU" fill="steelblue" transform="translate(24,5), scale(1)" r="4"></svg></li>
+					<li><label><input type="checkbox" checked="checked" value="LU"> Local Universe</label><svg width="30" height="20"><circle class="LU" fill="steelblue" transform="translate(22,10), scale(1)" r="6"></svg></li>
+					<li><label><input type="checkbox" checked="checked" value="MW"> Milky Way</label><svg width="65" height="20"><circle class="MW" fill="steelblue" transform="translate(55,10), scale(1)" r="10"></svg></li>
+				</ul>
+				<ul id="r">
+					<li id="reset"> <svg id="recycle" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="28px" height="28px" fill="white" viewBox="0 0 21 21" enable-background="new 0 0 21 21" xml:space="preserve">
+					<path d="M17.784,8.186c-0.795-0.794-1.73-1.359-2.727-1.697v2.135c0.48,0.239,0.935,0.55,1.334,0.95
+					c1.993,1.994,1.993,5.236,0,7.229c-1.993,1.99-5.233,1.99-7.229,0c-1.991-1.995-1.991-5.235,0-7.229
+					c0.005-0.006,0.021-0.016,0.028-0.025h0.002l1.181,1.179l-0.007-3.744L6.624,6.979L7.8,8.155C7.793,8.167,7.782,8.179,7.773,8.186
+					c-2.763,2.762-2.763,7.243,0,10.005c2.767,2.765,7.245,2.765,10.011,0C20.545,15.429,20.548,10.948,17.784,8.186z"/>
+					</svg> reset to default view </li>
+				</ul>
+			</div>
+			<div class=control id=coord>
+				<h2>Coordinate System</h2>
+				<ul id="coords">
+					<li><label><input checked="checked" type="radio" name="coord" value="Galactic"> Galactic</label></li>
+					<li><label><input type="radio" name="coord" value="Equatorial"> Equatorial</label></li><br>
+				</ul>
+				<h4></h4>
+				 <h3 id="count"></h3>
+			</div>
+			<div class=control id=cat>
+				<h2>Categories</h2>
+				<ul id="categories">
+					<li class=star><label><input type="checkbox" checked="checked" value="Star"> Stars (Neutron Stars, Black Holes, etc)</label></li>
+					<li class=nebula><label><input type="checkbox" checked="checked" value="Nebula"> Nebulas (SNRs, Planetary Nebulas, etc)</label></li>
+					<li class=galaxy><label><input type="checkbox" checked="checked" value="Galaxy"> Galaxies & Galaxy Clusters</label></li>
+					<li class=planet><label><input type="checkbox" checked="checked" value="Planet"> Exoplanets</label></li>
+					<li class=misc><label><input type="checkbox" checked="checked" value="Cosmology"> Miscellaneous (Cosmology, GRB, etc)</label></li>
+				</ul>
+			</div>
+			<div class=time>
+			  <h2>Release Date Filter</h2><span class=filter> click and drag anywhere to create a filter region:</span>
+			  <svg id="timeFilt" width="960" height="35"></svg>
+			</div>
+
+                </form>
+
+	<script src="./d3.v3/d3.v3.min.js"></script>
+        <script src="./d3.v3/d3.geo.projection.v0.min.js"></script>
+        <script src="./chandra_skymap.js"></script>
+
+     </body>
+
+
+</html>
