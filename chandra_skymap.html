@@ -33,7 +33,7 @@
     }
     h2{
         color: steelblue;
-	margin: 12px 0 18px 0;
+	margin: 22px 0 18px 0;
 	border-bottom: 1px solid #ccc;
 	font-size: 24px;
 	line-height: 1;
@@ -63,6 +63,9 @@
     span.filter {
         color: #b5b5b5;
         text-shadow: 1px 1px 1px #000; 
+	font-size: 12px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
     }
     .stroke {
        fill: none;
@@ -205,7 +208,7 @@
        height: 25px;
        position: absolute;
        top: 65px;
-       left: 25px;
+       left: 27px;
     } 
     #zp2 {
        float: left;
@@ -221,7 +224,7 @@
        height: 25px;
        position: absolute;
        top: 65px;
-       left: 53px;
+       left: 55px;
     } 
    #zm2 {
        float: left;
@@ -231,6 +234,46 @@
        top: 65px;
        left: 53px;
     } 
+   #note {
+       float: right;
+       width: 300px;
+       height: 25px;
+       position: absolute;
+       top: 558px;
+       left:17px;
+  }
+  #nav {
+        color: steelblue;
+	font-size: 40px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+        text-align:center
+         text-shadow: 1px 1px 1px #000;
+  }
+  #nav2 {
+        color: steelblue;
+	font-size: 55px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+        text-align:center
+         text-shadow: 1px 1px 1px #000;
+  }
+  #zp-temp {
+       float: left;
+       width: 15px;
+       height: 15px;
+       position: absolute;
+       top: 52px;
+       left: 27px;
+  }
+  #zm-temp {
+       float: left;
+       width: 25px;
+       height: 25px;
+       position: absolute;
+       top: 42px;
+       left: 55px;
+  }
 
      </style>
 </head>
@@ -241,19 +284,51 @@
 
      <h1>Chandra Skymap: Visualizing the X-ray Universe</h1>
     <div id="zp">
-      <embed src="./plus.svg" type="image/svg+xml" id="plus"/>
+     <svg
+      viewBox="0 -256 1792 1792"
+      version="1.1"
+      width="25px"
+      height="25px"
+      opacity="0.7"
+      pagecolor="#ffffff"
+      bordercolor="#666666"
+      borderopacity="1"
+      objecttolerance="10"
+      gridtolerance="10"
+      guidetolerance="10"
+      showgrid="false"
+      <g transform="matrix(1,0,0,-1,113.89831,1277.8305)" id="zplusimg">
+      <path d="m 1216,576 v 128 q 0,26 -19,45 -19,19 -45,19 H 896 v 256 q 0,26 -19,45 -19,19 -45,19 H 704 q -26,0 -45,-19 -19,-19 -19,-45 V 768 H 384 q -26,0 -45,-19 -19,-19 -19,-45 V 576 q 0,-26 19,-45 19,-19 45,-19 H 640 V 256 q 0,-26 19,-45 19,-19 45,-19 h 128 q 26,0 45,19 19,19 19,45 v 256 h 256 q 26,0 45,19 19,19 19,45 z m 320,64 Q 1536,431 1433,254.5 1330,78 1153.5,-25 977,-128 768,-128 559,-128 382.5,-25 206,78 103,254.5 0,431 0,640 0,849 103,1025.5 206,1202 382.5,1305 559,1408 768,1408 977,1408 1153.5,1305 1330,1202 1433,1025.5 1536,849 1536,640 z" id="path3029"
+      style="fill:white"/>
+      </g>
+      </svg>
     </div>
-    <div id="zp2">
+   <div id="zp2">
       <svg width="25" height="25"><circle class="MW" fill="white" transform="translate(12.5,12.5), scale(1)" r="12" opacity="0"  id="zplus"></svg>
     </div>
-    <div id="zm">
-      <embed src="./minus.svg" type="image/svg+xml" id="minus"/>
+   <div id="zm">
+     <svg
+     viewBox="0 -256 1792 1792"
+     version="1.1"
+     width="25px"
+     height="25px"
+     opacity="0.7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     <g transform="matrix(1,0,0,-1,129.08475,1277.8305)" id="zminimg">
+     <path d="m 1216,576 v 128 q 0,26 -19,45 -19,19 -45,19 H 384 q -26,0 -45,-19 -19,-19 -19,-45 V 576 q 0,-26 19,-45 19,-19 45,-19 h 768 q 26,0 45,19 19,19 19,45 z m 320,64 Q 1536,431 1433,254.5 1330,78 1153.5,-25 977,-128 768,-128 559,-128 382.5,-25 206,78 103,254.5 0,431 0,640 0,849 103,1025.5 206,1202 382.5,1305 559,1408 768,1408 977,1408 1153.5,1305 1330,1202 1433,1025.5 1536,849 1536,640 z" id="path2993" inkscape:connector-curvature="0"style="fill:white" />
+     </g>
+     </svg>
     </div>
     <div id="zm2">
       <svg width="25" height="25"><circle class="MW" fill="white" transform="translate(12.5,12.5), scale(1)" r="12" opacity="0"  id="zmin"></svg>
     </div>
      <svg id="circles" width="960" height="500"></svg>
-
+    <div id="note"><span class=filter>click the links below to learn more:</span></div>
 		<form id="controls">
 			<div class=control id=coord>
 				<h2>Coordinate System</h2>
