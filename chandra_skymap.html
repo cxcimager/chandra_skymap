@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -138,23 +137,23 @@
          margin: 0;
          padding: 0;
     }
-     li.star {
+    #star {
          color:#5566aa;
          text-shadow: 1px 1px 1px #000;
-     }
-     li.nebula {
+    }
+    #nebula {
          color: #aa4499;
          text-shadow: 1px 1px 1px #000;
      }
-     li.galaxy {
+    #galaxy {
          color: #ee7788;
          text-shadow: 1px 1px 1px #000;
      }
-     li.planet {
+     #planet {
          color: #db9736;
          text-shadow: 1px 1px 1px #000;
      }
-     li.misc {
+     #misc {
          color: #ddcccc;
          text-shadow: 1px 1px 1px #000;
      }
@@ -169,6 +168,9 @@
         text-shadow: 1px 1px 1px #000;
 	text-align: left;
         position: absolute;
+     }
+     #plain {
+        color: #b5b5b5;
      }
      #dist {
         left: 340px;
@@ -253,12 +255,39 @@
      <svg id="circles" width="960" height="500"></svg>
 
 		<form id="controls">
+			<div class=control id=coord>
+				<h2>Coordinate System</h2>
+				<ul id="coords">
+				  <li><label><input checked="checked" type="radio" name="coord"
+				  value="Galactic"> <a id="plain"
+				  href="http://en.wikipedia.org/wiki/Galactic_coordinate_system"
+				  target="_blank">Galactic</a></label></li>
+				  <li><label><input type="radio"
+				  name="coord" value="Equatorial"> <a id="plain"
+				  href="http://en.wikipedia.org/wiki/Equatorial_coordinate_system"
+				  target="_blank">Equatorial</a></label></li><br>
+				</ul>
+				<h4></h4>
+				 <h3 id="count"></h3>
+			</div>
 			<div class=control id=dist>
 				<h2>Distance & Circle Size</h2>
 				<ul id="distance">
-					<li><label><input type="checkbox" checked="checked" value="EU"> Early Universe</label><svg width="30" height="10"><circle class="EU" fill="steelblue" transform="translate(24,5), scale(1)" r="4"></svg></li>
-					<li><label><input type="checkbox" checked="checked" value="LU"> Local Universe</label><svg width="30" height="20"><circle class="LU" fill="steelblue" transform="translate(22,10), scale(1)" r="6"></svg></li>
-					<li><label><input type="checkbox" checked="checked" value="MW"> Milky Way</label><svg width="65" height="20"><circle class="MW" fill="steelblue" transform="translate(55,10), scale(1)" r="10"></svg></li>
+					<li><label><input
+				  type="checkbox" checked="checked" value="EU">
+				  <a id="plain"
+				  href="http://en.wikipedia.org/wiki/Redshift#Extragalactic_observations"
+				  target="_blank">Early Universe</a></label><svg width="30" height="10"><circle class="EU" fill="steelblue" transform="translate(24,5), scale(1)" r="4"></svg></li>
+				  <li><label><input
+				  type="checkbox" checked="checked" value="LU">
+				  <a id="plain"
+				  href="http://en.wikipedia.org/wiki/Local_Group"
+				  target="_blank">Local Universe</a></label><svg width="30" height="20"><circle class="LU" fill="steelblue" transform="translate(22,10), scale(1)" r="6"></svg></li>
+				  <li><label><input
+				  type="checkbox" checked="checked" value="MW">
+				  <a id="plain"
+				  href="http://en.wikipedia.org/wiki/Redshift#Local_observations"
+				  target="_blank">Milky Way</a></label><svg width="65" height="20"><circle class="MW" fill="steelblue" transform="translate(55,10), scale(1)" r="10"></svg></li>
 				</ul>
 				<ul id="r">
 					<li id="reset"> <svg id="recycle" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -270,23 +299,42 @@
 					</svg> reset to default view </li>
 				</ul>
 			</div>
-			<div class=control id=coord>
-				<h2>Coordinate System</h2>
-				<ul id="coords">
-					<li><label><input checked="checked" type="radio" name="coord" value="Galactic"> Galactic</label></li>
-					<li><label><input type="radio" name="coord" value="Equatorial"> Equatorial</label></li><br>
-				</ul>
-				<h4></h4>
-				 <h3 id="count"></h3>
-			</div>
 			<div class=control id=cat>
 				<h2>Categories</h2>
 				<ul id="categories">
-					<li class=star><label><input type="checkbox" checked="checked" value="Star"> Stars (Neutron Stars, Black Holes, etc)</label></li>
-					<li class=nebula><label><input type="checkbox" checked="checked" value="Nebula"> Nebulas (SNRs, Planetary Nebulas, etc)</label></li>
-					<li class=galaxy><label><input type="checkbox" checked="checked" value="Galaxy"> Galaxies & Galaxy Clusters</label></li>
-					<li class=planet><label><input type="checkbox" checked="checked" value="Planet"> Exoplanets</label></li>
-					<li class=misc><label><input type="checkbox" checked="checked" value="Cosmology"> Miscellaneous (Cosmology, GRB, etc)</label></li>
+
+				  <li id=star><label><input type="checkbox" checked="checked" value="Star"> <a id="star"
+				  href="http://chandra.harvard.edu/xray_sources/stars.html"
+				  target="_blank">Stars</a> (<a id="star" href="http://chandra.harvard.edu/xray_sources/neutron_stars.html"
+				  target="_blank">Neutron Stars</a>, <a id="star"
+				  href="http://chandra.harvard.edu/xray_sources/blackholes.html"
+				  target="_blank">Black Holes</a>, etc)</label></li>
+			
+				  <li id=nebula><label><input type="checkbox" checked="checked"
+				  value="Nebula"> Nebulas (<a id="nebula"
+				  href="http://chandra.harvard.edu/xray_sources/supernovas.html"
+				  target="_blank">SNRs</a>, <a
+				  id="nebula" href="http://chandra.harvard.edu/xray_sources/white_dwarfs.html">Planetary Nebulas</a>, etc)</label></li>
+
+				  <li id=galaxy><label><input type="checkbox" checked="checked"
+				  value="Galaxy"> <a id="galaxy"
+				  href="http://chandra.harvard.edu/xray_sources/galaxies.html"
+				  target="_blank">Galaxies</a> & <a id="galaxy"
+				  href="http://chandra.harvard.edu/xray_sources/galaxy_clusters.html"
+				  target="_blank">Galaxy Clusters</a></label></li>
+
+				  <li id=planet><label><input type="checkbox" checked="checked" value="Planet"> <a id=planet
+				  href="http://chandra.harvard.edu/resources/illustrations/exoplanets.html">Exoplanets</a>
+				  </label></li>
+
+				  <li id=misc><label><input type="checkbox" checked="checked" value="Cosmology"> Misc. (<a id="misc"
+				  href="http://chandra.harvard.edu/xray_sources/background.html"
+				  target="_blank">Cosmology</a>,
+				  <a id="misc" href="http://chandra.harvard.edu/xray_sources/quasars.html"
+				  target="_blank">Quasars</a>,
+				  <a id="misc" href="http://chandra.harvard.edu/xray_sources/grb.html"
+				  target="_blank">GRB</a>, etc)</label></li>
+				  
 				</ul>
 			</div>
 			<div class=time>

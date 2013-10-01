@@ -1,3 +1,25 @@
+/** Chandra Skymap: Visualizing the X-ray Universe
+ *  NAME: chandra_skymap.js
+ *  Purpose: a javascript program that generates the skymap and associated control and filtering tools. 
+ *
+ *  LICENSE: Copyright (C) 2013 - 
+ *   NASA/Smithsonian Astrophysical Observatory/Chandra X-ray Center/Joseph DePasquale
+
+ *   This program is free software; you can redistribute it and/or 
+ *   modify it under the terms of version 2 of the GNU General
+ *   Public License as published by the Free Software Foundation. 
+
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+**/
+
 //main skymap generator
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = 960 - margin.left - margin.right,
@@ -22,7 +44,7 @@ var margin = {top: 0, right: 0, bottom: 0, left: 0},
     colors = [
     "#aa4499", //Nebulas
     "#ee7788", //Galaxies
-    "#5566aa", //Stars (was #5566aa)
+    "#5566aa", //Stars 
     "#ddcccc", //Misc
     "#db9736"  //Exoplanets
     ];
@@ -51,7 +73,7 @@ function update() {
 	tempData2 = cullUnwantedDist(tempData)
 	drawingData = cullUnwantedTime(tempData2)
 	draw();	
-	d3.select('#count').html("object count:<span class=obj>  " + drawingData.length);
+	d3.select('#count').html("object count:<span class=obj>  " + drawingData.length );
     }
 }
 
@@ -176,6 +198,7 @@ function draw(){
 			  } else if (d.Ygal < -25) { tipY = d3.event.pageY - 240;
 			  } else { tipY = d3.event.pageY - 95; }
 			  return tipY + "px";})
+		  
               } else if (coordinate==="Equatorial") {           
 		  div.html("<b>" + d.source + "</b><br/><br/><i>" + d.title + "</i><br/><br/>" + d.headline + "<br/><br/>" + "<img src=" + d.img + " alt='Image preview' width='150' height='150' /><br/><br/><i>RA: " + d.pRA + " Dec: " + d.pDEC +"<br>Release Date: " + d.date)
 		      .style("left", function(x) {
@@ -325,7 +348,7 @@ d3.select("#zplus").on('click', function() {
     move();
     document.onselectstart = function() { return false; };
     event.target.ondragstart = function() { return false; };
-    return false;
+    //return false;
 });
 d3.select("#zmin").on('click', function() {
     zoom.scale(zoom.scale()-zoom.scale()/1.5)
@@ -333,7 +356,7 @@ d3.select("#zmin").on('click', function() {
     move();
     document.onselectstart = function() { return false; };
     event.target.ondragstart = function() { return false; };
-    return false;
+    //return false;
 });
 
 // reset the map to default view
