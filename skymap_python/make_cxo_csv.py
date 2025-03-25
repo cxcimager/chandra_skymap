@@ -1,63 +1,74 @@
-import Image
+#!/bin/python3.9
+#import Image
 import codecs
 import sys
 import os
 import re
 import csv
-import urllib2
+#import urllib2
 import coords
 from pyavm import AVM
-from os.path import basename
+#from os.path import basename
 
 def main(image):
 
     #initialize variables
     BASE_RESOURCE_URL = 'http://chandra.harvard.edu/photo/'
+    BASE_RESOURCE_PATH= "/proj/web-chandra/htdocs/photo/"
     web_img = os.path.basename(image)
+    avmdir = os.path.dirname(image)
+    directory = BASE_RESOURCE_PATH + avmdir
     filename, fileext = os.path.splitext(image)
-    jpg = basename(filename)+".jpg"
+    jpg = os.path.basename(filename)+".jpg"
+    filename=os.path.basename(filename)
     records=[]
     Type = ""
     Dist = ""
     SubType = "None";
-
+    fullname= directory+'/'+jpg
+    
     #jpegs seem to work more consistently with pyavm - use the main jpg image for AVM
     try:
-        print "Reading AVM from: "+filename+".jpg"
-        avm = AVM(filename+'.jpg')
-        ThmbLink = BASE_RESOURCE_URL+filename+'_250.jpg'
-        ThmbLink2 = BASE_RESOURCE_URL+filename+'_map.jpg'
+        #print ("Reading AVM from: "+ fullname);
+        avm = AVM.from_image(fullname)
+        ThmbLink = directory+'/'+filename+'_250.jpg'
+        ThmbLink2 = directory+'/'+filename+'_115.jpg'
     except:
-        print 'Trouble reading AVM: '+filename+".jpg"
+        print ('Trouble reading AVM: '+fullname+".jpg")
         return 1
-
+   # print ("AVM recovered from: "+ fullname)
+   
+    #print (avm.Date)
     URL = (avm.ReferenceURL).strip('\n')
     Date = avm.Date
+    print(URL)
     try:
         Name = avm.Subject.Name[0]
     except:
-        print "Missing Name:" +filename+".jpg"
+        print ("Missing Name:" +filename+".jpg")
+    #----------------------------------
+    ##grab the thumbnail image, don't do the check since 
+    ##we don't hit all images anymore
     
-    try:
-        f = urllib2.urlopen(urllib2.Request(ThmbLink2))
-        Img = ThmbLink
-    except:
-        Img = avm.ResourceURL
-    if Img == avm.ResourceURL:
-        try:
-            f = urllib2.urlopen(urllib2.Request(ThmbLink))
-            Img = ThmbLink
-        except:
-            Img = avm.ResourceURL
-            print "Missing thumbnail! (" + ThmbLink + "): " + filename+".jpg"
-        
+    #try _250 first, then _115   
+    Img = ''
+    if os.path.isfile(ThmbLink) is True:
+        Img = BASE_RESOURCE_URL+avmdir+'/'+filename+'_250.jpg'
+    elif os.path.isfile(ThmbLink2) is True:
+          Img = BASE_RESOURCE_URL+avmdir+'/'+filename+'_115.jpg'
+    else:
+        print ("Missing thumbnail! (" + ThmbLink +')and ('+ThmbLink2 +')')
+
+    #else:    
+        print ("Missing thumbnail! (" + ThmbLink +')and ('+ThmbLink2 +')')
+    #print ("Thumbnail image:    "+Img)
     Cat = re.split("\.",avm.Subject.Category[0])
-    Title = avm.Title[0].replace('\"','\'')
-                    
+    Title = avm.Title.replace('\"','\'')
+    #print(Title+":"+avm.Title)               
     try:
         Headline = avm.Headline.replace('\"','\'')
     except:
-        print 'Missing Headline:' +filename+".jpg"
+        print ('Missing Headline:' +filename+".jpg")
 
                         
     #coordinate conversions
@@ -65,10 +76,10 @@ def main(image):
         Xeq = avm.Spatial.ReferenceValue[0]
         Yeq = avm.Spatial.ReferenceValue[1]
         Xgal,Ygal = coords.eq2gal(Xeq,Yeq, b1950=False, dtype='f8')
-        #Xgal,Ygal = coords.radec2aitoff(l,b)
+        #print(Ygal[0])#Xgal,Ygal = coords.radec2aitoff(l,b)
         #Xeq, Yeq = coords.radec2aitoff(RA, DEC)
     except:
-        print 'Missing spatial info:' +filename+".jpg"
+        print ('Missing spatial info:' +filename+".jpg")
 
     #category parser
     if Cat[0] == "A":
@@ -169,7 +180,7 @@ def main(image):
 
 if __name__ == '__main__':
 	if len(sys.argv) != 2:
-		print 'Usage: python %(script)s <filename>' % {"script": inspect.getfile( inspect.currentframe() ) }
+		print ('Usage: python %(script)s <filename>' % {"script": inspect.getfile( inspect.currentframe() ) })
 	else:
 		main( sys.argv[1] )
 
